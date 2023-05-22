@@ -1,0 +1,12 @@
+{% load static %}
+<section id="trainers" class="trainers">
+    <div class="container" data-aos="fade-up">
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+            {% for member in members %}
+                {% if member.is_staff %}
+                    {% include 'includes/person_card.html' with member=member %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

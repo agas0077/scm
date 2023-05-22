@@ -1,0 +1,53 @@
+{% load filters %}
+<section id="subscription-form" class="col-lg-12 mt-5 mt-lg-0">
+    {% include 'includes/form_error.html' %}
+    <div class="container-fluid px-1 mx-auto">
+        <div class="row d-flex bg-primary justify-content-center">
+            <div class="container col-md-6">
+                <p class="text-light fs-3 m-5">
+                    Подавай заявку &amp;
+                    <br>
+                    <b>Развивайся вместе с нами</b>
+                </p>
+                <p class="text-light fs-3 m-5">
+                    Для подтверждения корпоративного статуса направьте письмо на <b>team@youthscm.ru</b> с вашей рабочей почты.
+                </p>
+                <p class="text-light fs-3 m-5">
+                    После регистрации вам будет <b>направлено письмо</b> с дальнейшими инструкциями (если не получили письмо, проверьте папку «Спам»).
+                </p>
+                <p class="text-light fs-3 m-5">
+                    Контакт для связи:
+                    <br>
+                    Елена - <b>t.me/true_helen</b>
+                </p>
+            </div>
+            <form method="post"
+                  enctype="multipart/form-data"
+                  class="form-card col-md-6"
+                  {% if action_url %} action="{% url action_url.url action_url.param %}" {% endif %}>
+                {% csrf_token %}
+                <div class="row justify-content-between text-left">
+                    {% include 'includes/form_error.html' %}
+                    <div class="form-group col-md-12  flex-column d-flex text-light p-5">
+                        {% include 'includes/form_field.html' with name="name" type="text" id="id_name" field=subscription_form.name value=subscription_form.name.value error_field=subscription_form.name %}
+                        {% include 'includes/form_field.html' with name="surname" type="text" id="id_surname" field=subscription_form.surname value=subscription_form.surname.value error_field=subscription_form.surname %}
+                        {% include 'includes/form_field.html' with name="email" type="email" id="id_email" field=subscription_form.email value=subscription_form.email.value error_field=subscription_form.email %}
+                        {% include 'includes/form_field.html' with name="phone_num" type="tel" id="id_phone_num" field=subscription_form.phone_num value=subscription_form.phone_num.value error_field=subscription_form.phone_num %}
+                        {% include 'includes/form_field.html' with name="city" type="text" id="id_city" field=subscription_form.city value=subscription_form.city.value error_field=subscription_form.city %}
+                        {% include 'includes/form_field.html' with name="telegram" type="text" id="id_telegram" field=subscription_form.telegram value=subscription_form.telegram.value error_field=subscription_form.telegram %}
+                        {% include 'includes/form_field.html' with name="birthday" type="date" id="id_birthday" field=subscription_form.birthday value=subscription_form.birthday.value|date:"Y-m-d" error_field=subscription_form.birthday %}
+                        {% include 'includes/form_field.html' with name="company" type="text" id="id_company" field=subscription_form.company value=subscription_form.company.value error_field=subscription_form.company %}
+                        {% include 'includes/form_field.html' with name="job" type="text" id="id_job" field=subscription_form.job value=subscription_form.job.value error_field=subscription_form.job %}
+                        <div class="form-group d-flex">
+                            {{ subscription_form.terms_agree }}
+                            <a href="" class="text-light fw-bold">{{ subscription_form.terms_agree.label_tag }}</a>
+                            {% include "includes/form_field_error.html" with field=subscription_form.terms_agree %}
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex col-md-12 justify-content-center ">
+                    <button type="submit" class="btn mb-5 btn-dark">Подать заявку</button>
+                </div>
+            </form>
+        </div>
+    </section>

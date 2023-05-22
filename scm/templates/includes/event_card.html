@@ -1,0 +1,48 @@
+{% load thumbnail %}
+<tr class="inner-box">
+    <td scope="row " style="vertical-align: middle;">
+        <div class="event-date fw-bold">
+            <span>{{ event.date|date:"d" }}</span>
+            <p>{{ event.date|date:"E" }}</p>
+            <span class="d-flex text-nowrap fw-bold">{{ event.start_time }} - {{ event.end_time }}</span>
+        </div>
+    </td>
+    <td class="w-25" style="vertical-align: middle;">
+        <div class="event-img">
+            {% thumbnail event.image "100x100" upscale=False quality=100 as im %}
+                <img class="img-fluid project-image rounded shadow-sm" src={{ im.url }} alt={{ event.title }} />
+            {% endthumbnail %}
+    </div>
+    <div class="organizers mt-2">
+        <p href="#">
+        {{ event.speaker }}</a>
+    </div>
+</td>
+<td class="w-25" style="vertical-align: middle;">
+    <div class="event-wrap">
+        <h3>
+            <p>{{ event.title }}</p>
+        </h3>
+        <div class="meta">
+            <div class="categories">
+                <p href="#">
+                {{ event.description }}</a>
+            </div>
+        </div>
+    </div>
+</td>
+<td class="w-10" style="text-align: center; vertical-align: middle;">
+    <div class="r-no">
+        <b>{{ event.format }}</b>
+    </div>
+</td>
+<td class="w-auto" style="text-align: center; vertical-align: middle;">
+    <button class="btn btn-primary mb-1"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#event_about_{{ event.pk }}_id">Подробнее</button>
+    <div class="primary-btn mt-1">
+        <a class="btn btn-primary" href="#">Регистрация</a>
+    </div>
+</td>
+</tr>
