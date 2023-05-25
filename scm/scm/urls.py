@@ -21,12 +21,11 @@ from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
-from scm.views import index
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('members/', include('members.urls', namespace='members')),
-    path('', index, name='index')
+    path('core/', include('core.urls', namespace='core')),
+    path('', include('community.urls', namespace='community'))
 ]
 
 

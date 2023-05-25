@@ -15,5 +15,5 @@ class News(models.Model):
     image = models.ImageField(IMAGE_NAME, upload_to='news/')
     category = models.CharField(CATEGORY_NAME, max_length=200)
     description = models.CharField(DESCRIPTION_NAME, max_length=200)
-    text = models.TextField(DESCRIPTION_NAME)
+    text = models.TextField(TEXT_NAME)
     date = models.DateField(DATE_NAME, auto_now_add=True)

@@ -40,13 +40,13 @@
                         {% include 'includes/form_field.html' with name="job" type="text" id="id_job" field=subscription_form.job value=subscription_form.job.value error_field=subscription_form.job %}
                         <div class="form-group d-flex">
                             {{ subscription_form.terms_agree }}
-                            <a href="" class="text-light fw-bold">{{ subscription_form.terms_agree.label_tag }}</a>
+                            <a href="{% url 'core:policy' %}" class="text-light fw-bold">{{ subscription_form.terms_agree.label_tag }}</a>
                             {% include "includes/form_field_error.html" with field=subscription_form.terms_agree %}
                         </div>
                     </div>
                 </div>
                 <div class="d-flex col-md-12 justify-content-center ">
-                    <button type="submit" class="btn mb-5 btn-dark">Подать заявку</button>
+                    <button type="submit" class="btn btn-lg mb-5 btn-dark">Подать заявку</button>
                 </div>
             </form>
         </div>

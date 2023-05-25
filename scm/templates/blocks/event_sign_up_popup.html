@@ -1,0 +1,49 @@
+<div class="modal fade"
+     id="event_sign_up_{{ event.pk }}_id"
+     tabindex="-1"
+     aria-labelledby="event_sign_up_{{ event.pk }}_id_label"
+     data-backdrop="false"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="event_sign_up_{{ event.pk }}_id_label">{{ event.title }}</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post"
+                      enctype="multipart/form-data"
+                      class="form-card col-md-12"
+                      {% if action_url %} action="{% url action_url.url action_url.param %}" {% endif %}>
+                    {% csrf_token %}
+                    <div class="row justify-content-between text-left">
+                        {% include 'includes/form_error.html' %}
+                        <div class="form-group col-md-12  flex-column d-flex">
+                            {% include 'includes/form_field.html' with name="name" type="text" id="id_name" field=subscription_form.name value=subscription_form.name.value error_field=subscription_form.name %}
+                            {% include 'includes/form_field.html' with name="surname" type="text" id="id_surname" field=subscription_form.surname value=subscription_form.surname.value error_field=subscription_form.surname %}
+                            {% include 'includes/form_field.html' with name="email" type="email" id="id_email" field=subscription_form.email value=subscription_form.email.value error_field=subscription_form.email %}
+                            {% include 'includes/form_field.html' with name="phone_num" type="tel" id="id_phone_num" field=subscription_form.phone_num value=subscription_form.phone_num.value error_field=subscription_form.phone_num %}
+                            {% include 'includes/form_field.html' with name="city" type="text" id="id_city" field=subscription_form.city value=subscription_form.city.value error_field=subscription_form.city %}
+                            {% include 'includes/form_field.html' with name="telegram" type="text" id="id_telegram" field=subscription_form.telegram value=subscription_form.telegram.value error_field=subscription_form.telegram %}
+                            {% include 'includes/form_field.html' with name="birthday" type="date" id="id_birthday" field=subscription_form.birthday value=subscription_form.birthday.value|date:"Y-m-d" error_field=subscription_form.birthday %}
+                            {% include 'includes/form_field.html' with name="company" type="text" id="id_company" field=subscription_form.company value=subscription_form.company.value error_field=subscription_form.company %}
+                            {% include 'includes/form_field.html' with name="job" type="text" id="id_job" field=subscription_form.job value=subscription_form.job.value error_field=subscription_form.job %}
+                            <div class="form-group d-flex">
+                                {{ subscription_form.terms_agree }}
+                                <a href="{% url 'core:policy' %}" class="fw-bold text-dark">{{ subscription_form.terms_agree.label_tag }}</a>
+                                {% include "includes/form_field_error.html" with field=subscription_form.terms_agree %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 justify-content-between">
+                        <button type="submit" class="btn btn-primary">Подать заявку</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="d-flex justify-content-center align-items-center">
+<section style="margin-top: 72.5px;" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative"
          data-aos="zoom-in"
          data-aos-delay="100">
         <h1>
-            Молодёжное сообщество <br>по цепям поставок
+            Поздравляем! Вы успешно подали заявку на вступление.
         </h1>
-        <h2>Площадка для развития и нетворкинга молодых специалистов</h2>
-        <a href="#subscription-form" class="btn-get-started">Вступить</a>
+        <h2>Скоро мы свяжемся с Вами.</h2>
+        <a href="{% url 'community:index' %}" class="btn-get-started">Вернуться на главную</a>
     </div>
 </section>
 {% endblock content %}

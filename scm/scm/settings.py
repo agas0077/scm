@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sorl.thumbnail',
+    'community.apps.CommunityConfig',
+    'core.apps.CoreConfig',
     'members.apps.MembersConfig',
     'news.apps.NewsConfig',
     'events.apps.EventsConfig',

@@ -28,6 +28,7 @@
         </div>
     </div>
     {% for event in events %}
-        {% include 'includes/event_about_popup.html' with event=event %}
+        {% include 'blocks/event_about_popup.html' with event=event %}
+        {% include 'blocks/event_sign_up_popup.html' with event=event %}
     {% endfor %}
 </section>
