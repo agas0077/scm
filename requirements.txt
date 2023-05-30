@@ -20,7 +20,6 @@ greenlet==2.0.2
 html-tag-names==0.1.2
 html-void-elements==0.1.0
 idna==3.4
-ipython==8.13.2
 jedi==0.18.2
 jinxed==1.2.0
 jsbeautifier==1.14.7
