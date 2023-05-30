@@ -1,0 +1,48 @@
+<!-- Carousel wrapper -->
+{% load thumbnail %}
+{% load static %}
+{% block more_styles %}
+{% endblock more_styles %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div id="carouselControls-{{ event.pk }}"
+             class="carousel slide carousel-fade col-md-4"
+             data-mdb-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in event.event_image_event.values %}
+                    {% thumbnail image.image "500x300" crop="center" upscale=False quality=100 as im %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img class="img-fluid rounded-start" src={{ im.url }} alt={{ event.title }} />
+                        </div>
+                    {% endthumbnail %}
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-mdb-target="#carouselControls-{{ event.pk }}"
+                    data-mdb-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Предыдущая</span>
+            </button>
+            <button class="carousel-control-next"
+                    type="button"
+                    data-mdb-target="#carouselControls-{{ event.pk }}"
+                    data-mdb-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Следующая</span>
+            </button>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <p class="card-text">{{ event.description }}</p>
+                <p class="card-text">
+                    <small class="text-muted">{{ event.date }}</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% block more_scripts %}
+    <script src="{% static 'assets/js/mdb.min.js' %}"></script>
+{% endblock more_scripts %}

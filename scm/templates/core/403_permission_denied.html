@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    Ooops...
+{% endblock title %}
+{% block content %}
+    <section class="container header-margin">
+        <h1>Ошибка 403</h1>
+        <p>К сожалению, у вас нет доступа</p>
+        <a href="{% url 'community:index' %}" class="btn btn-primary">Перейти на главную страницу</a>
+    </section>
+{% endblock content %}

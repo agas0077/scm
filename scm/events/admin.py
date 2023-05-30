@@ -1,9 +1,17 @@
 from django.contrib import admin
-from events.models import Event
+from events.models import Event, EventMember, EventImage
 
 # Register your models here.
-class MemberAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Event()._meta.get_fields()]
+
+
+class BaseAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(Event, MemberAdmin)
+
+class EventImageAdmin(BaseAdmin):
+    list_display = [field.name for field in EventImage._meta.get_fields()]
+
+
+admin.site.register(Event, BaseAdmin)
+admin.site.register(EventMember, BaseAdmin)
+admin.site.register(EventImage, EventImageAdmin)

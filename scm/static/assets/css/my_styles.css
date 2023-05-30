@@ -1,0 +1,15 @@
+.header-margin {
+    margin-top: calc(75px + 3rem);
+}
+
+.hover-border {
+    /* border: 1px solid black; */
+    -webkit-transition: border 200ms ease-in;
+    -moz-transition: border 200ms ease-in;
+    -o-transition: border 200ms ease-in;
+    transition: border 200ms ease-in;
+}
+
+.hover-border:hover {
+    border: 3px solid var(--bs-blue);
+}

@@ -2,10 +2,6 @@ from django.contrib import admin
 from members.models import Member
 from django.contrib.auth.admin import UserAdmin
 
-# # Register your models here.
-# class MemberAdmin(UserAdmin):
-#     list_filter = ('approved', )
-
 
 class MemberAdmin(UserAdmin):
     fieldsets = (
@@ -16,18 +12,19 @@ class MemberAdmin(UserAdmin):
         ('Сотрудники', {
          'fields': ('is_staff', 'is_superuser', 'staff_job', 'education',
                     'image', 'groups')}),
-        ('Согласование', {'fields': ('terms_agree', 'approved',)}),
+        ('Согласование', {
+         'fields': ('terms_agree', 'approved', 'is_active')}),
     )
     add_fieldsets = (
         (
             None,
             {
                 'classes': ('wide',),
-                'fields': ['email', 'password1', 'password2',] + Member.REQUIRED_FIELDS ,
+                'fields': ['email', 'password1', 'password2',] + Member.REQUIRED_FIELDS,
             },
         ),
     )
-    exclude = ('username', 'date_joined', 'is_active')
+    exclude = ('username', 'date_joined')
     list_display = ('email', 'name', 'surname', 'is_staff')
     search_fields = ('name', 'surname', 'email')
     list_filter = ('approved',)

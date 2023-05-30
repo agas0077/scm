@@ -1,0 +1,33 @@
+{% load thumbnail %}
+{% load tags %}
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+    <div class="member d-flex flex-column justify-content-between hover-border">
+        <div>
+            {% thumbnail person.member.image "4514" upscale=False quality=100 as im %}
+                <img class="img-fluid" data-bs-toggle="modal" data-bs-target="#person_about_{{ person.pk }}" src={{ im.url }} alt={{ person.member.name }} />
+            {% endthumbnail %}
+            <div class="member-content">
+                <h4>{{ person.member.name }} {{ person.member.surname }}</h4>
+                <p>{{ person.member.job }}, {{ person.member.company }}</p>
+                <p>{{ person.member.education }}</p>
+            </div>
+        </div>
+        <div class="modal-footer mx-3 mb-3 justify-content-between">
+            <button type="submit"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#person_about_{{ person.pk }}">Подробнее</button>
+            {% with "person-form-"|concat:person.pk as person_id %}
+                {% if chosen %}
+                    {% if chosen.pk == person.pk %}
+                        {% include 'includes/sign_up_button_form.html' with id=person_id url=become_url value=person.pk text=APPLICTION_SUBMITED %}
+                    {% else %}
+                        {% include 'includes/sign_up_button_form.html' with id=person_id url=become_url value=person.pk text=APPLICTION_CAN_BE_SUBMITED disabled=1 %}
+                    {% endif %}
+                {% else %}
+                    {% include 'includes/sign_up_button_form.html' with id=person_id url=become_url value=person.pk text=APPLICTION_CAN_BE_SUBMITED %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</div>

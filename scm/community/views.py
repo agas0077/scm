@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from events.models import Event
 from members.forms import MemberForm
 from members.models import DATE_FIELDS, Member
+from mentor.models import Mentor
 from news.models import News
 
 
@@ -33,20 +34,20 @@ def _convert_date(request_copy):
 
 
 def index(request):
-    events = Event.objects.order_by('date')
+    events = Event.objects.filter(date__gte=dt.date.today()).order_by('date')
     members = Member.objects.all()
     news = News.objects.order_by('date', '-pk')[:3]
+    mentor_counts = Mentor.objects.all().count()
 
-    subscription_form = MemberForm(
-        request.POST or None,
-        files=request.FILES or None)
-    template = 'index.html'
+    subscription_form = MemberForm(request.POST or None)
+    template = 'community/index.html'
     context = {
         'subscription_form': subscription_form,
         'events': events,
         'news': news,
         'members': members,
-        'mentors_count': None,  # TODO: Добавть количество менторов
+        # TODO: Добавть количество менторов
+        'mentors_count': mentor_counts,
     }
 
     if not request.method == "POST":

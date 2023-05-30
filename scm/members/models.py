@@ -18,6 +18,7 @@ APPROVED_NAME = 'Одобрен'
 IMAGE_NAME = 'Изображение'
 IS_STAFF_NAME = 'Сотрудник'
 IS_SUPERUSER_NAME = 'Суперюзер'
+IS_ACTIVE_NAME = 'Активный пользователь'
 STAFF_JOB_NAME = 'Должность в проекте'
 EDUCATION_NAME = 'Образование'
 
@@ -26,6 +27,7 @@ TELEGRAM_ERROR = 'Формат должен быть: @ник'
 # Create your models here.
 
 DATE_FIELDS = ['birthday']
+MEMBER_NAME = 'Участник'
 
 
 class CustomUserManager(BaseUserManager):
@@ -104,6 +106,10 @@ class Member(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(
         IS_SUPERUSER_NAME,
         default=False,
+    )
+    is_active = models.BooleanField(
+        IS_ACTIVE_NAME,
+        default=True,
     )
 
     def __str__(self):

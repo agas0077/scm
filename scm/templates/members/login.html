@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Вход в систему
+{% endblock title %}
+{% block content %}
+  <div class="container py-5 header-margin">
+    <div class="row justify-content-center">
+      <div class="col-md-8 p-5">
+        <div class="card">
+          <div class="card-header">Войти</div>
+          <div class="card-body">
+            {% include 'includes/form_error.html' %}
+            {% include 'includes/basic_form.html' with btn_label='Войти' %}
+          </div>
+          <!-- card body -->
+        </div>
+        <!-- card -->
+      </div>
+      <!-- col -->
+    </div>
+    <!-- row -->
+  </div>
+{% endblock content %}

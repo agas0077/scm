@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="container header-margin">
+        {{ events }}
+        {% for event in page_obj %}
+            {% include 'includes/event_gallery_card.html' with event=event %}
+        {% endfor %}
+        {% include 'includes/paginator.html' %}
+    </section>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% load tags %}
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Афиша МСЦП</h2>
+            <p>Ближайшие мероприятия сообщества</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="col" scope="col">Дата</th>
+                                <th scope="col">Спикер</th>
+                                <th scope="col">Описание</th>
+                                <th class="text-center" scope="col">Формат</th>
+                                <th class="text-center" scope="col">Подрбнее</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for event in events %}
+                                {% include 'includes/event_card.html' with event=event %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for event in events %}
+        {% with 'event_about_'|concat:event.id as id %}
+            {% include 'includes/info_pop_up.html' with id=id title=event.title text=event.text %}
+        {% endwith %}
+    {% endfor %}
+</section>

@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+from members.models import MEMBER_NAME
 
 TITLE_NAME = 'Заголовок'
 SHORT_DESCRIPTION_NAME = 'Краткое описание'
@@ -11,7 +14,10 @@ FORMAT_NAME = 'Формат'
 TEXT_NAME = 'Текст'
 DESCRIPTION_NAME = 'Описание'
 
+EVENT_NAME = 'Мероприятие'
+
 # Create your models here.
+Member = get_user_model()
 
 
 class Event(models.Model):
@@ -33,3 +39,33 @@ class Event(models.Model):
                               default=Format.OFFLINE,
                               max_length=7)
     text = models.TextField(DESCRIPTION_NAME)
+
+    def __str__(self):
+        return self.title
+
+
+class EventImage(models.Model):
+    event = models.ForeignKey(Event,
+                              verbose_name=EVENT_NAME,
+                              on_delete=models.PROTECT,
+                              related_name='event_image_event')
+    image = models.ImageField(IMAGE_NAME, upload_to='events/gallery/')
+
+
+class EventMember(models.Model):
+    member = models.ForeignKey(Member,
+                               verbose_name=MEMBER_NAME,
+                               on_delete=models.PROTECT,
+                               related_name='event_member_member')
+    event = models.ForeignKey(Event,
+                              verbose_name=EVENT_NAME,
+                              on_delete=models.PROTECT,
+                              related_name='event_member_event')
+
+    class Meta:
+        constraints = (
+            models.UniqueConstraint(
+                fields=['member', 'event'],
+                name='unique_member_event'
+            ),
+        )

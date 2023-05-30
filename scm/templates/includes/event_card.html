@@ -1,4 +1,8 @@
+{% load static %}
 {% load thumbnail %}
+{% load tags %}
+{% url 'events:sign_up' as sign_up_url %}
+
 <tr class="inner-box">
     <td scope="row " style="vertical-align: middle;">
         <div class="event-date fw-bold">
@@ -12,40 +16,70 @@
             {% thumbnail event.image "100x100" upscale=False quality=100 as im %}
                 <img class="img-fluid project-image rounded shadow-sm" src={{ im.url }} alt={{ event.title }} />
             {% endthumbnail %}
-    </div>
-    <div class="organizers mt-2">
-        <p href="#">
-        {{ event.speaker }}</a>
-    </div>
-</td>
-<td class="w-25" style="vertical-align: middle;">
-    <div class="event-wrap">
-        <h3>
-            <p>{{ event.title }}</p>
-        </h3>
-        <div class="meta">
-            <div class="categories">
-                <p href="#">
-                {{ event.description }}</a>
+        </div>
+        <div class="organizers mt-2">
+            <p href="#">
+            {{ event.speaker }}</a>
+        </div>
+    </td>
+    <td class="w-25" style="vertical-align: middle;">
+        <div class="event-wrap">
+            <h3>
+                <p>{{ event.title }}</p>
+            </h3>
+            <div class="meta">
+                <div class="categories">
+                    <p href="#">
+                    {{ event.description }}</a>
+                </div>
             </div>
         </div>
-    </div>
-</td>
-<td class="w-10" style="text-align: center; vertical-align: middle;">
-    <div class="r-no">
-        <b>{{ event.format }}</b>
-    </div>
-</td>
-<td class="w-auto" style="text-align: center; vertical-align: middle;">
-    <button class="btn btn-primary mb-1"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#event_about_{{ event.pk }}_id">&nbsp;Подробнее&nbsp;</button>
-    <div class="mt-1">
+    </td>
+    <td class="w-10" style="text-align: center; vertical-align: middle;">
+        <div class="r-no">
+            <b>{{ event.format }}</b>
+        </div>
+    </td>
+    <td class="w-auto" style="text-align: center; vertical-align: middle;">
         <button class="btn btn-primary mb-1"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#event_sign_up_{{ event.pk }}_id">Регистрация</button>
-    </div>
-</td>
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#event_about_{{ event.pk }}">&nbsp;Подробнее&nbsp;</button>
+        {% if request.user.is_authenticated %}
+            {% with "event-form-"|concat:event.pk as event_id %}
+                {% if event.date|date:"Y-m-d" < now|date:"Y-m-d" %}    
+                    <div class="mt-1">
+                        <span class="d-inline-block"
+                            tabindex="0"
+                            data-toggle="tooltip"
+                            title="Регистрация закрыта">
+                            <button class="btn btn-primary mb-1"
+                                    style="pointer-events: none"
+                                    type="button"
+                                    disabled>Регистрация</button>
+                        </span>
+                    </div>
+                {% else %}
+                    {% if event.event_member_event.values|length %}
+                        {% include 'includes/sign_up_button_form.html' with id=event_id url=sign_up_url value=event.pk text="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отмена&nbsp;&nbsp;&nbsp;&nbsp;" %}
+                    {% else %}
+                        {% include 'includes/sign_up_button_form.html' with id=event_id url=sign_up_url value=event.pk text="Регистрация" %}
+                    {% endif %}
+                {% endif %}
+                    
+            {% endwith %}
+        {% else %}
+            <div class="mt-1">
+                <span class="d-inline-block"
+                    tabindex="0"
+                    data-toggle="tooltip"
+                    title="Регистрация доступна только для членов сообщества">
+                    <button class="btn btn-primary mb-1"
+                            style="pointer-events: none"
+                            type="button"
+                            disabled>Регистрация</button>
+                </span>
+            </div>
+        {% endif %}
+    </td>
 </tr>

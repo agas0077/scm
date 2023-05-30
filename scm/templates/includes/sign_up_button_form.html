@@ -1,0 +1,7 @@
+<div class="mt-1">
+    <form class="button-submittion-form" id="{{ id }}" method="POST" action={{ url }}>
+        {% csrf_token %}
+        <input type="number" id="pk" value={{ value }} hidden>
+        <button class="btn btn-primary mb-1" id="btn_{{ id }}" type="subbmit" {% if disabled %}disabled{% endif %}>{{ text }}</button>
+    </form>
+</div>

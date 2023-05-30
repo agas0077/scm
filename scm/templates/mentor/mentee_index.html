@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load static %}
+{% block content %}
+    {% url 'mentor:become_mentee' as become_url %}
+    <section id="trainers" class="trainers header-margin">
+        <div class="container" data-aos="fade-up">
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+                {% for person in object_list %}
+                    {% include 'includes/mentor_card.html' with become_url=become_url %}
+                {% endfor %}
+            </div>
+        </div>
+        {% for person in object_list %}
+            {% with 'person_about_'|concat:person.id as id %}
+                {% include 'includes/info_pop_up.html' with id=id title=person.member.name|concat:" "|concat:person.member.surname text=person.description %}
+            {% endwith %}
+        {% endfor %}
+    </section>
+{% endblock content %}
+{% block more_scripts %}
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/button_signup_mentor_mentee.js' %}"></script>
+{% endblock more_scripts %}
