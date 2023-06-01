@@ -44,3 +44,4 @@ class Gallery(ListView):
     model = Event
     template_name = 'events/gallery.html'
     paginate_by = 10
+    ordering = '-date'
