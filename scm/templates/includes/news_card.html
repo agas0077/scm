@@ -1,25 +1,22 @@
 {% load thumbnail %}
 <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-3">
-    <div class="course-item">
-        {% thumbnail article.image "400x300" crop="center" upscale=False quality=100 as im %}
-                        <img class="img-fluid project-image rounded shadow-sm"
-                            src={{ im.url }}
-                            alt={{ article.title }} />
-        {% endthumbnail %}
-
-        <div class="course-content">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>{{ article.category }}</h4>
-            </div>
-            <h3>
-                <a href="course-details.html">{{ article.title }}</a>
-            </h3>
-            <p>{{ article.description }}</p>
-            <div class="trainer d-flex justify-content-between align-items-center">
-                <div class="trainer-profile d-flex align-items-center">
-                    {{ article.date }}
-                </div>
-            </div>
+    <div class="course-item hover-shadow"
+         data-bs-toggle="modal"
+         data-bs-target="#news_item_{{ news_item.pk }}">
+        {% thumbnail news_item.image "400x300" crop="center" upscale=False quality=100 as im %}
+        <img class="img-fluid project-image rounded shadow-sm" src={{ im.url }} alt={{ news_item.title }} />
+    {% endthumbnail %}
+    <div class="course-content">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="bg-secondary text-light">{{ news_item.category }}</h4>
+        </div>
+        <h3>
+            <a href="course-details.html">{{ news_item.title }}</a>
+        </h3>
+        <p>{{ news_item.description }}</p>
+        <div class="trainer d-flex justify-content-between align-items-center">
+            <div class="trainer-profile d-flex align-items-center">{{ news_item.date }}</div>
         </div>
     </div>
+</div>
 </div>

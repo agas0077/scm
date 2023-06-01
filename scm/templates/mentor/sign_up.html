@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
 {% load tags %}
 {% load static %}
+{% block title %}
+    Заявка на менторскую программу
+{% endblock title %}
 {% block content %}
     {% url 'mentor:sign_up' as sign_up_url %}
     <section id="trainers" class="trainers header-margin">
         <div class="container" data-aos="fade-up">
-            <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="col-2 flex-column">
-                        {% include 'includes/sign_up_button_form.html' with id='btn-signup-mentor' url=sign_up_url value='mentor' text='Стать ментором' %}
-                    </div>
-                    <div class="col-2">
-                        {% include 'includes/sign_up_button_form.html' with id='btn-signup-mentee' url=sign_up_url value='mentee' text='Стать менти' %}
-                    </div>
-                </div>
+            <div class="col-12 d-flex flex-column"
+                 data-aos="zoom-in"
+                 data-aos-delay="100">
+                <form method="post"
+                      enctype="multipart/form-data"
+                      class="col-8 align-self-center"
+                      {% if action_url %} action="{% url action_url.url action_url.param %}" {% endif %}>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <p class="mb-2 fw-bold">{{ field.label }}</p>
+                        {{ field }}
+                    {% endfor %}
+                    <button type="submit" class="mt-4 btn btn-primary">Отправить заявку</button>
+                </form>
             </div>
         </div>
     </section>

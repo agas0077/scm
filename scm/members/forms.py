@@ -1,8 +1,4 @@
-from typing import Any, Dict, Mapping, Optional, Type, Union
 from django import forms
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
 from django.utils.safestring import mark_safe
 from django.urls import reverse_lazy
 
@@ -14,7 +10,7 @@ class MemberForm(forms.ModelForm):
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input me-2'}),
-        required=False,
+        required=True,
         label_suffix='')
 
     class Meta:
@@ -24,15 +20,16 @@ class MemberForm(forms.ModelForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         link = reverse_lazy("core:policy")
-        self.fields['terms_agree'].label = mark_safe(
-            f'<a href="{link}" target="_blank">{TERMS_AGREE_NAME}</a>')
+        label = (f'<a href="{link}" class="link-light fw-bold"'
+                 f' target="_blank">{TERMS_AGREE_NAME}</a>')
+        self.fields['terms_agree'].label = mark_safe(label)
 
     def clean_terms_agree(self):
         agreed = self.cleaned_data.get('terms_agree')
 
-        if agreed:
-            return agreed
+        if not agreed:
+            raise forms.ValidationError(
+                'Необходимо принять условия политики конфиденциальности!'
+            )
 
-        raise forms.ValidationError(
-            'Необходимо принять условия политики конфиденциальности!'
-        )
+        return agreed

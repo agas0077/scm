@@ -23,7 +23,7 @@ STAFF_JOB_NAME = 'Должность в проекте'
 EDUCATION_NAME = 'Образование'
 
 PHONE_NUM_ERROR = 'Формат должен быть: +99999999999'
-TELEGRAM_ERROR = 'Формат должен быть: @ник'
+
 # Create your models here.
 
 DATE_FIELDS = ['birthday']
@@ -61,7 +61,8 @@ class CustomUserManager(BaseUserManager):
 class Member(AbstractBaseUser, PermissionsMixin):
     """Модель пользователя"""
 
-    phone_number_regex = RegexValidator(regex=r'^\+?\d{8,15}$')
+    phone_number_regex = RegexValidator(regex=r'^\+?\d{8,15}$',
+                                        message=PHONE_NUM_ERROR)
 
     REQUIRED_FIELDS = ['name', 'surname', 'phone_num',
                        'city', 'telegram', 'birthday', 'company',
@@ -71,24 +72,32 @@ class Member(AbstractBaseUser, PermissionsMixin):
     username = None
     objects = CustomUserManager()
 
-    email = models.EmailField(EMAIL_NAME, max_length=254, unique=True)
+    email = models.EmailField(EMAIL_NAME, 
+                              max_length=254,
+                              unique=True, 
+                              error_messages={
+                                  'unique': ('Пользователь с такой '
+                                             'почтой уже зарегистрирован')
+                              })
 
     name = models.CharField(NAME_NAME, max_length=200)
     surname = models.CharField(SURNAME_NAME, max_length=200)
     phone_num = models.CharField(PHONE_NUM_NAME,
                                  validators=[phone_number_regex, ],
-                                 error_messages=PHONE_NUM_ERROR,
                                  max_length=16,
-                                 unique=True)
+                                 unique=True,
+                                 error_messages={
+                                     'unique': ('Пользователь с таким номером '
+                                                'уже зарегистрирован')
+                                 })
     city = models.CharField(CITY_NAME, max_length=200)
     telegram = models.CharField(TELEGRAM_NAME,
                                 max_length=200,
-                                unique=True,
-                                error_messages=TELEGRAM_ERROR)
+                                unique=True)
     birthday = models.DateField(BD_NAME)
     company = models.CharField(COMPANY_NAME, max_length=200)
     job = models.CharField(JOB_NAME, max_length=200)
-    terms_agree = models.BooleanField(TERMS_AGREE_NAME)
+    terms_agree = models.BooleanField(TERMS_AGREE_NAME, default=False)
     approved = models.BooleanField(APPROVED_NAME, default=False)
 
     image = models.ImageField(

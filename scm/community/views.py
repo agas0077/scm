@@ -60,11 +60,8 @@ def index(request):
     context['form'] = subscription_form
 
     if not subscription_form.is_valid():
+        context['anchor'] = 'subscription-form'
         return render(request, template, context)
 
     subscription_form.save()
     return redirect('members:sign_up_success')
-
-
-def create_project(request):
-    '''Вью-функция создания проекта.'''

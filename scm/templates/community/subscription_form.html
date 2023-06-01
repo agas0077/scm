@@ -24,7 +24,7 @@
             <form method="post"
                   enctype="multipart/form-data"
                   class="form-card col-md-6"
-                  {% if action_url %} action="{% url action_url.url action_url.param %}" {% endif %}>
+                  action="{% url 'community:index' %}#subscription_form">
                 {% csrf_token %}
                 <div class="row justify-content-between text-left">
                     {% include 'includes/form_error.html' %}
@@ -35,12 +35,14 @@
                         {% include 'includes/form_field.html' with name="phone_num" type="tel" id="id_phone_num" field=subscription_form.phone_num value=subscription_form.phone_num.value error_field=subscription_form.phone_num %}
                         {% include 'includes/form_field.html' with name="city" type="text" id="id_city" field=subscription_form.city value=subscription_form.city.value error_field=subscription_form.city %}
                         {% include 'includes/form_field.html' with name="telegram" type="text" id="id_telegram" field=subscription_form.telegram value=subscription_form.telegram.value error_field=subscription_form.telegram %}
-                        {% include 'includes/form_field.html' with name="birthday" type="date" id="id_birthday" field=subscription_form.birthday value=subscription_form.birthday.value|date:"Y-m-d" error_field=subscription_form.birthday %}
+                        {% include 'includes/form_field.html' with name="birthday" type="date" id="id_birthday" field=subscription_form.birthday value=subscription_form.birthday.value error_field=subscription_form.birthday %}
                         {% include 'includes/form_field.html' with name="company" type="text" id="id_company" field=subscription_form.company value=subscription_form.company.value error_field=subscription_form.company %}
                         {% include 'includes/form_field.html' with name="job" type="text" id="id_job" field=subscription_form.job value=subscription_form.job.value error_field=subscription_form.job %}
-                        <div class="form-group d-flex">
-                            {{ subscription_form.terms_agree }}
-                            <a href="{% url 'core:policy' %}" class="text-light fw-bold">{{ subscription_form.terms_agree.label_tag }}</a>
+                        <div class="form-group d-flex flex-column">
+                            <div class="d-flex">
+                                {{ subscription_form.terms_agree }}
+                                {{ subscription_form.terms_agree.label_tag }}
+                            </div>
                             {% include "includes/form_field_error.html" with field=subscription_form.terms_agree %}
                         </div>
                     </div>

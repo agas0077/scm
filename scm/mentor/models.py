@@ -7,7 +7,7 @@ Member = get_user_model()
 
 # Create your models here.
 
-DESCRIPTION_NAME = 'Описание'
+DESCRIPTION_NAME = 'Мотивация и ожидания'
 APPROVED_NAME = 'Согласовано'
 STATUS_NAME = 'Статус пары'
 MENTOR_NAME = 'Ментор'
@@ -18,15 +18,15 @@ class BaseMentorMenteeModel(models.Model):
     description = models.TextField(DESCRIPTION_NAME)
     approved = models.BooleanField(APPROVED_NAME, default=False)
 
-    def __str__(self):
-        return self.member.__str__()
-
 
 class Mentor(BaseMentorMenteeModel):
     member = models.OneToOneField(Member,
                                   verbose_name=MEMBER_NAME,
                                   related_name='mentor',
                                   on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.member.__str__()
 
 
 class Mentee(BaseMentorMenteeModel):
@@ -34,6 +34,9 @@ class Mentee(BaseMentorMenteeModel):
                                   verbose_name=MEMBER_NAME,
                                   related_name='mentee',
                                   on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.member.__str__()
 
 
 class MentorMentee(models.Model):

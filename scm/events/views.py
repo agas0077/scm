@@ -43,9 +43,4 @@ def index(request):
 class Gallery(ListView):
     model = Event
     template_name = 'events/gallery.html'
-    paginate_by = 1
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-
-        ctx=  super().get_context_data(**kwargs)
-        return ctx
+    paginate_by = 10

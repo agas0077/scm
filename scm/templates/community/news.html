@@ -1,4 +1,4 @@
-<!-- ======= Popular Courses Section ======= -->
+{% load tags %}
 <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
@@ -6,10 +6,15 @@
             <p>Самые актуальные новости сообщества</p>
         </div>
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-            {% for article in news %}
-                {% include 'includes/news_card.html' with article=article %}
+            {% for news_item in news %}
+                {% include 'includes/news_card.html' with news_item=news_item %}
             {% endfor %}    
         </div>
     </div>
+    {% for news_item in news %}
+        {% with 'news_item_'|concat:news_item.id as id %}
+            {% include 'includes/info_pop_up.html' with id=id title=news_item.title text=news_item.text %}
+        {% endwith %}
+    {% endfor %}
 </section>
 <!-- End Popular Courses Section -->

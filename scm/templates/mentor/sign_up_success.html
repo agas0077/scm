@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load static %}
+{% block title %}Заявка отправлена!{% endblock title %}
+{% block content %}
+    {% url 'mentor:sign_up' as sign_up_url %}
+    <section id="trainers" class="trainers header-margin">
+        <div class="container" data-aos="fade-up">
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-12 d-flex justify-content-center">
+                    <p>Ваша заявка отправлена. Мы скоро свяжемся с Вами!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

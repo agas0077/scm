@@ -21,12 +21,12 @@
                 <div class="icon-boxes d-flex flex-column justify-content-center">
                     <div class="row">
                         <div class="col-xl-4 d-flex align-items-stretch">
-                            <div class="icon-box mt-4 mt-xl-0">
+                            <a {% if not request.user.is_authenticated %}href='#subscription-form'{% endif %} class="text-dark icon-box mt-4 mt-xl-0 hover-shadow" id="mentor-why-us">
                                 <i class="bx bx-receipt"></i>
                                 <h4>Менторская программа</h4>
                                 <p>Для каждого желающего составляется индивидуальный трек развития и подбирается наставник, который помогает и развивает своего менти.
                                     База наставников формируется из опытных профессионалов, готовых делиться опытом.</p>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-xl-4 d-flex align-items-stretch">
                             <div class="icon-box mt-4 mt-xl-0">
