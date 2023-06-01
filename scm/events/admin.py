@@ -1,8 +1,6 @@
 from django.contrib import admin
 from events.models import Event, EventMember, EventImage
 
-# Register your models here.
-
 
 class BaseAdmin(admin.ModelAdmin):
     pass

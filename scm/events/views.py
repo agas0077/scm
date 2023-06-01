@@ -1,5 +1,4 @@
 import datetime as dt
-from typing import Any, Dict
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -7,8 +6,6 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 
 from events.models import EventMember, Event
-
-# Create your views here.
 
 
 @login_required()
@@ -21,13 +18,13 @@ def sign_up(request):
         obj, created = EventMember.objects.get_or_create(
             event=event, member=member)
 
-        response_data['btn_text'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отмена&nbsp;&nbsp;&nbsp;&nbsp;'
+        response_data['btn_text'] = ('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отмена'
+                                     '&nbsp;&nbsp;&nbsp;&nbsp;')
         if not created:
             obj.delete()
             response_data['btn_text'] = 'Регистрация'
 
     return JsonResponse(response_data)
-
 
 
 def index(request):

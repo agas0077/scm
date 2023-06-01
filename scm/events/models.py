@@ -16,7 +16,6 @@ DESCRIPTION_NAME = 'Описание'
 
 EVENT_NAME = 'Мероприятие'
 
-# Create your models here.
 Member = get_user_model()
 
 

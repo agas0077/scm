@@ -24,7 +24,7 @@ class Mentor(BaseMentorMenteeModel):
                                   verbose_name=MEMBER_NAME,
                                   related_name='mentor',
                                   on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.member.__str__()
 
@@ -34,7 +34,7 @@ class Mentee(BaseMentorMenteeModel):
                                   verbose_name=MEMBER_NAME,
                                   related_name='mentee',
                                   on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.member.__str__()
 
@@ -53,7 +53,7 @@ class MentorMentee(models.Model):
                                   verbose_name=MENTEE_NAME,
                                   related_name='mentor_mentee_mentee',
                                   on_delete=models.CASCADE)
-    
+
     status = models.CharField(STATUS_NAME,
                               max_length=50,
                               choices=Status.choices,

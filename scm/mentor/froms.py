@@ -5,6 +5,7 @@ from mentor.models import Mentee, Mentor, DESCRIPTION_NAME
 DESCRIPTION_PLACEHOLDER = ('Укажите ваши ожидания от учстия в ментроской '
                            'программе.')
 
+
 class SignUpBaseForm(forms.ModelForm):
     description = forms.CharField(label=DESCRIPTION_NAME,
                                   widget=forms.Textarea(attrs={
@@ -12,6 +13,7 @@ class SignUpBaseForm(forms.ModelForm):
                                       'class': 'form-control',
                                       'rows': '10',
                                   }))
+
     class Meta:
         fields = ('description', )
 

@@ -7,8 +7,6 @@ DESCRIPTION_NAME = 'Краткое описание'
 TEXT_NAME = 'Текст'
 DATE_NAME = 'Дата'
 
-# Create your models here.
-
 
 class News(models.Model):
     title = models.CharField(TITLE_NAME, max_length=100)

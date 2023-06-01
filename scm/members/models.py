@@ -72,9 +72,9 @@ class Member(AbstractBaseUser, PermissionsMixin):
     username = None
     objects = CustomUserManager()
 
-    email = models.EmailField(EMAIL_NAME, 
+    email = models.EmailField(EMAIL_NAME,
                               max_length=254,
-                              unique=True, 
+                              unique=True,
                               error_messages={
                                   'unique': ('Пользователь с такой '
                                              'почтой уже зарегистрирован')

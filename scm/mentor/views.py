@@ -1,4 +1,3 @@
-from typing import Any, Dict
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -171,7 +170,8 @@ class SignUpBaseView(LoginRequiredMixin, FormView):
     def _send_email(self, form):
         model = form.initial.get('model')
         mail_subject = ' '.join(
-            [MENTOR_MAIL_SUBJECT, f': новый {model.lower()} менторской программы'])
+            [MENTOR_MAIL_SUBJECT,
+             f': новый {model.lower()} менторской программы'])
         mail_message = ('Новый участник хочет присоединиться:\n'
                         f'Кто: {self.request.user.email}\n'
                         f'Куда: {model}\n'
@@ -201,7 +201,6 @@ class SignUpMeneeView(SignUpBaseView):
 class SignUpMentorView(SignUpBaseView):
     form_class = SignUpMentorForm
 
-    
     def get_initial(self):
         self.initial['model'] = 'Ментор'
         return super().get_initial()

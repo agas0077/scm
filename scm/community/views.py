@@ -46,7 +46,6 @@ def index(request):
         'events': events,
         'news': news,
         'members': members,
-        # TODO: Добавть количество менторов
         'mentors_count': mentor_counts,
     }
 
