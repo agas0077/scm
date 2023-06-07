@@ -33,3 +33,11 @@ class MemberForm(forms.ModelForm):
             )
 
         return agreed
+
+    def clean_telegram(self):
+        telegram = self.cleaned_data.get('telegram')
+
+        if telegram[0] != '@':
+            return f'@{telegram}'
+
+        return telegram
