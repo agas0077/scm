@@ -2,15 +2,17 @@
 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
     <div class="member">
         {% thumbnail member.image "4514" upscale=False quality=100 as im %}
-            <img class="img-fluid" src={{ im.url }} alt={{ member.name }} />
-        {% endthumbnail %}
+        <img class="img-fluid" src={{ im.url }} alt={{ member.name }} />
+    {% endthumbnail %}
     <div class="member-content">
-        <h4>{{ member.name }} {{ member.surname }}</h4>
-        <span>{{ member.staff_job }}</span>
-        <p>{{ member.company }}, {{ member.job }}</p>
-        <p>{{ member.education }}</p>
+        <div>
+            <h4>{{ member.name }} {{ member.surname }}</h4>
+            <span>{{ member.staff_job }}</span>
+            <p>{{ member.company }}, {{ member.job }}</p>
+            <p>{{ member.education }}</p>
+        </div>
         <div class="social">
-            <a href="http://www.t.me/{{ member.telegram }}" target="_blank"><i class="bi bi-telegram"></i></a>
+            <a href="http://www.t.me/{{ member.telegram }}" target="_blank"><i class="fs-1 bi bi-telegram"></i></a>
         </div>
     </div>
 </div>

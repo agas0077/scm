@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+    Афиша
+{% endblock title %}
 {% block content %}
     {% url 'events:sign_up' as sign_up %}
     {% load tags %}

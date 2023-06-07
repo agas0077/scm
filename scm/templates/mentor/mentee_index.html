@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load tags %}
 {% load static %}
+{% block title %}
+    Выбор ментора
+{% endblock title %}
 {% block content %}
     {% url 'mentor:become_mentee' as become_url %}
     <section id="trainers" class="trainers header-margin">
