@@ -24,3 +24,29 @@
     display: inline-block;
 }
 
+
+@media (max-width: 991px) {
+    .mobile-menu-btn {
+        margin: 0 15px 0 0;
+        padding: 6px 18px;
+        background: #5fcf80;
+        color: #fff;
+        border-radius: 50px;
+        white-space: nowrap;
+        transition: 0.3s;
+        display: inline-block;
+    }
+}
+
+@media (min-width: 991px) {
+    .navbar  a.mentor-btn {
+        margin: 0 15px 0 0;
+        padding: 8px 25px;
+        background: #5fcf80;
+        color: #fff;
+        border-radius: 50px;
+        white-space: nowrap;
+        transition: 0.3s;
+        display: inline-block;
+    }
+}

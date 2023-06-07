@@ -15,8 +15,8 @@
                         {% elif request.user.mentee.approved %}
                             <a href="{% url 'mentor:mentee_index' %}">Менторская программа</a>
                         {% else %}
-                            <li class="dropdown" id="header-mentor-dropdown">
-                                <span>Менторская программа</span> <i class="bi bi-chevron-down"></i>
+                            <li class="dropdown">
+                                <a id="header-mentor-dropdown">Менторская программа <i class="bi bi-chevron-down"></i></a > 
                                 <ul>
                                     {% if request.user.mentee or request.user.mentor %}
                                         <li>
@@ -35,6 +35,9 @@
                         {% endif %}
                     </li>
                 {% endif %}
+                <li>
+                    <a id="about-us-mobile" href="{% url 'community:index' %}#about">О нас</a>
+                </li>
                 <li>
                     <a href="{% url 'events:index' %}">Афиша</a>
                 </li>

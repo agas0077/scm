@@ -7,13 +7,13 @@
     {% include 'community/hero.html' %}
     {% include 'community/news.html' %}
     {% include 'community/about.html' %}
+    {% include 'community/founders.html' %}
     {% include 'community/why_us.html' %}
     {% include 'community/counts.html' %}
     {% include 'community/events.html' %}
     {% if not request.user.is_authenticated %}
         {% include 'community/subscription_form.html' %}
     {% endif %}
-    {% include 'community/founders.html' %}
     <!-- ======= Trainers Section ======= -->
     <!-- End Trainers Section -->
 </main>
