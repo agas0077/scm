@@ -1,9 +1,9 @@
 {% load filters %}
 <section id="subscription-form" class="col-lg-12 mt-5 mt-lg-0">
     {% include 'includes/form_error.html' %}
-    <div class="container-fluid px-1 mx-auto">
-        <div class="row d-flex bg-primary justify-content-center">
-            <div class="container col-md-6">
+    <div class="container px-1 mx-auto">
+        <div class="row d-flex justify-content-between ">
+            <div class="col-md-6 subscription-form-text">
                 <p class="text-light fs-3 m-5">
                     Подавай заявку &amp;
                     <br>
@@ -23,12 +23,12 @@
             </div>
             <form method="post"
                   enctype="multipart/form-data"
-                  class="form-card col-md-6"
+                  class="form-card col-md-5 subscription-form"
                   action="{% url 'community:index' %}#subscription_form">
                 {% csrf_token %}
                 <div class="row justify-content-between text-left">
                     {% include 'includes/form_error.html' %}
-                    <div class="form-group col-md-12  flex-column d-flex text-light p-5">
+                    <div class="form-group col-md-12  flex-column d-flex p-5">
                         {% include 'includes/form_field.html' with name="name" type="text" id="id_name" field=subscription_form.name value=subscription_form.name.value error_field=subscription_form.name %}
                         {% include 'includes/form_field.html' with name="surname" type="text" id="id_surname" field=subscription_form.surname value=subscription_form.surname.value error_field=subscription_form.surname %}
                         {% include 'includes/form_field.html' with name="email" type="email" id="id_email" field=subscription_form.email value=subscription_form.email.value error_field=subscription_form.email %}

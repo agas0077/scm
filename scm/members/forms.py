@@ -20,7 +20,7 @@ class MemberForm(forms.ModelForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         link = reverse_lazy("core:policy")
-        label = (f'<a href="{link}" class="link-light fw-bold"'
+        label = (f'<a href="{link}" class="link-dark fw-bold"'
                  f' target="_blank">{TERMS_AGREE_NAME}</a>')
         self.fields['terms_agree'].label = mark_safe(label)
 
