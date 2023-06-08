@@ -4,6 +4,10 @@
 {% endblock title %}
 {% block content %}
     <section class="container header-margin">
+        <div class="section-title">
+            <h2>Галерея</h2>
+            <p>Архив мероприятий</p>
+        </div>
         {{ events }}
         {% for event in page_obj %}
             {% include 'includes/event_gallery_card.html' with event=event %}

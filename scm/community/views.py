@@ -3,6 +3,7 @@ import datetime as dt
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 
+from community.models import CompanyLogo
 from events.models import Event
 from members.forms import MemberForm
 from members.models import DATE_FIELDS, Member
@@ -12,6 +13,11 @@ from news.models import News
 
 User = get_user_model()
 DATE_FROMAT = '%Y-%m-%d'
+
+
+def _grouped(objects, n):
+    for i in range(0, len(objects), n):
+        yield objects[i:i + n]
 
 
 def _convert_date(request_copy):
@@ -38,6 +44,7 @@ def index(request):
     members = Member.objects.all()
     news = News.objects.order_by('date', '-pk')[:3]
     mentor_counts = Mentor.objects.all().count()
+    company_logos = _grouped(CompanyLogo.objects.all(), 6)
 
     subscription_form = MemberForm(request.POST or None)
     template = 'community/index.html'
@@ -47,6 +54,7 @@ def index(request):
         'news': news,
         'members': members,
         'mentors_count': mentor_counts,
+        'company_logos': company_logos,
     }
 
     if not request.method == "POST":

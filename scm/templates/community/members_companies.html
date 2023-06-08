@@ -1,0 +1,60 @@
+{% load static %}
+{% load thumbnail %}
+<section id="counts" class="counts section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Компании участников</h2>
+      <p>Компании, в которых работают наши участники</p>
+    </div>
+    <div class="container">
+      {% if company_logos|length > 6 %}
+        <div id="carouselMultiItemExample"
+             class="carousel slide carousel-dark text-center"
+             data-mdb-ride="carousel">
+          <!-- Controls -->
+          <div class="d-flex justify-content-center mb-4">
+            <button class="carousel-control-prev position-relative"
+                    type="button"
+                    data-mdb-target="#carouselMultiItemExample"
+                    data-mdb-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next position-relative"
+                    type="button"
+                    data-mdb-target="#carouselMultiItemExample"
+                    data-mdb-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        {% endif %}
+        <!-- Inner -->
+        <div class="carousel-inner py-4">
+          <!-- Single item -->
+          {% for group in company_logos %}
+            <div class="carousel-item active">
+              <div class="container">
+                <div class="row">
+                  {% for card in group %}
+                    <div class="col-lg-2 {% if not forloop.first %}d-none d-lg-block{% endif %}">
+                      <div class="card">
+                        {% thumbnail card.company_logo "1000x1000" crop="center" upscale=False quality=100 as im %}
+                          <img class="card-img-top" src={{ im.url }} alt={{ card.company }} />
+                        {% endthumbnail %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Carousel wrapper -->
+{% block more_scripts %}
+  <script src="{% static 'assets/js/mdb.min.js' %}"></script>
+{% endblock more_scripts %}

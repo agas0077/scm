@@ -1,14 +1,3 @@
-/**
-* Template Name: Mentor
-* Updated: Mar 10 2023 with Bootstrap v5.2.3
-* Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -139,7 +128,7 @@ h6 {
 }
 
 #header .logo img {
-  max-height: 40px;
+  max-height: 50px;
 }
 
 /**
@@ -399,7 +388,7 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  /* height: 80vh; */
+  height: 70vh;
   background: url("../img/hero-bg.jpg") top center;
   background-size: cover;
   position: relative;
@@ -461,7 +450,7 @@ h6 {
 
 @media (min-width: 1024px) {
   #hero {
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
   }
 }
 

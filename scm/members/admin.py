@@ -20,7 +20,8 @@ class MemberAdmin(UserAdmin):
             None,
             {
                 'classes': ('wide',),
-                'fields': ['email', 'password1', 'password2',] + Member.REQUIRED_FIELDS,
+                'fields': ['email', 'password1', 'password2', ] +
+                Member.REQUIRED_FIELDS,
             },
         ),
     )
@@ -31,6 +32,5 @@ class MemberAdmin(UserAdmin):
     ordering = None
     list_display = ('email', 'name', 'surname')
     empty_value_display = '-пусто-'
-
 
 admin.site.register(Member, MemberAdmin)
