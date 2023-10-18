@@ -22,16 +22,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('members/', include('members.urls', namespace='members')),
-    path('events/', include('events.urls', namespace='events')),
-    path('core/', include('core.urls', namespace='core')),
-    path('mentor/', include('mentor.urls', namespace='mentor')),
-    path('', include('community.urls', namespace='community'))
+    path("admin/", admin.site.urls),
+    path("members/", include("members.urls", namespace="members")),
+    path("events/", include("events.urls", namespace="events")),
+    path("core/", include("core.urls", namespace="core")),
+    path("mentor/", include("mentor.urls", namespace="mentor")),
+    path("", include("community.urls", namespace="community")),
 ]
 
-handler404 = 'core.views.page_not_found'
-handler403 = 'core.views.csrf_failure'
+handler404 = "core.views.page_not_found"
+handler403 = "core.views.csrf_failure"
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
