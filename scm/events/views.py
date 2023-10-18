@@ -1,11 +1,12 @@
+# Standard Library
 import datetime as dt
 
+# Third Party Library
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
-
-from events.models import EventMember, Event
+from events.models import Event, EventMember
 
 
 @login_required()

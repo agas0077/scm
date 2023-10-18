@@ -1,5 +1,6 @@
+# Third Party Library
 from django.contrib import admin
-from events.models import Event, EventMember, EventImage
+from events.models import Event, EventImage, EventMember
 
 
 class BaseAdmin(admin.ModelAdmin):

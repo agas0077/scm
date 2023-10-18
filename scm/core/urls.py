@@ -1,6 +1,6 @@
-from django.urls import path
-
+# Third Party Library
 from core.views import policy
+from django.urls import path
 
 app_name = "core"
 

@@ -1,6 +1,6 @@
+# Third Party Library
 from django.contrib import admin
-
-from mentor.models import Mentor, Mentee, MentorMentee
+from mentor.models import Mentee, Mentor, MentorMentee
 
 
 class BaseAdmin(admin.ModelAdmin):

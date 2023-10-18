@@ -1,6 +1,6 @@
+# Third Party Library
 from django.urls import path
-
-from events.views import sign_up, index, Gallery
+from events.views import Gallery, index, sign_up
 
 app_name = "events"
 

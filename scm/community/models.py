@@ -1,3 +1,4 @@
+# Third Party Library
 from django.db import models
 
 LOGO_NAME = "Лого компании"

@@ -1,8 +1,8 @@
+# Third Party Library
 from django import forms
-from django.utils.safestring import mark_safe
 from django.urls import reverse_lazy
-
-from members.models import Member, TERMS_AGREE_NAME
+from django.utils.safestring import mark_safe
+from members.models import TERMS_AGREE_NAME, Member
 
 
 class MemberForm(forms.ModelForm):

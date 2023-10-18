@@ -1,6 +1,7 @@
+# Third Party Library
 from django.contrib import admin
-from members.models import Member
 from django.contrib.auth.admin import UserAdmin
+from members.models import Member
 
 
 class MemberAdmin(UserAdmin):

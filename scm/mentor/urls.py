@@ -1,12 +1,12 @@
+# Third Party Library
 from django.urls import path
-
 from mentor.views import (
-    MentorView,
     MenteeView,
-    become_mentor,
-    become_mentee,
+    MentorView,
     SignUpMeneeView,
     SignUpMentorView,
+    become_mentee,
+    become_mentor,
     sign_up_success,
 )
 

@@ -1,6 +1,6 @@
-from django.urls import path
-
+# Third Party Library
 from community.views import index
+from django.urls import path
 
 app_name = "community"
 

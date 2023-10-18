@@ -1,6 +1,6 @@
+# Third Party Library
 import django.contrib.auth.views as djviews
 from django.urls import path, reverse_lazy
-
 from members.views import sign_up_success
 
 app_name = "members"

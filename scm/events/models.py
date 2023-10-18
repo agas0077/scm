@@ -1,6 +1,6 @@
-from django.db import models
+# Third Party Library
 from django.contrib.auth import get_user_model
-
+from django.db import models
 from members.models import MEMBER_NAME
 
 TITLE_NAME = "Заголовок"

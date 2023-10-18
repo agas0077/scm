@@ -1,6 +1,6 @@
-from django.contrib import admin
-
+# Third Party Library
 from community.models import CompanyLogo
+from django.contrib import admin
 
 # Register your models here.
 

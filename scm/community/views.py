@@ -1,15 +1,15 @@
+# Standard Library
 import datetime as dt
 
-from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
-
+# Third Party Library
 from community.models import CompanyLogo
+from django.contrib.auth import get_user_model
+from django.shortcuts import redirect, render
 from events.models import Event
 from members.forms import MemberForm
 from members.models import DATE_FIELDS, Member
 from mentor.models import Mentor
 from news.models import News
-
 
 User = get_user_model()
 DATE_FROMAT = "%Y-%m-%d"

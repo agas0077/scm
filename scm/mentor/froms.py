@@ -1,6 +1,6 @@
+# Third Party Library
 from django import forms
-
-from mentor.models import Mentee, Mentor, DESCRIPTION_NAME
+from mentor.models import DESCRIPTION_NAME, Mentee, Mentor
 
 DESCRIPTION_PLACEHOLDER = (
     "Укажите ваши ожидания от учстия в ментроской " "программе."
