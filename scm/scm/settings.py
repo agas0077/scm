@@ -38,15 +38,13 @@ ADMINS = [("Andrey A", "at-am@yandex.ru")]
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "scm.andrey-agas-portfolio.website",
-    "www.scm.andrey-agas-portfolio.website",
+    "scm.andreicode.ru",
+    "www.scm.andreicode.ru",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://scm.andrey-agas-portfolio.website",
-    "http://scm.andrey-agas-portfolio.website",
-    "https://scm.www.andrey-agas-portfolio.website",
-    "http://www.scm.andrey-agas-portfolio.website",
+    "https://scm.andreicode.ru",
+    "http://scm.andreicode.ru",
 ]
 
 # Application definition
