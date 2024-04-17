@@ -45,6 +45,8 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://scm.andreicode.ru",
     "http://scm.andreicode.ru",
+    "https://www.scm.andreicode.ru",
+    "http://www.scm.andreicode.ru",
 ]
 
 # Application definition
